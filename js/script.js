@@ -208,8 +208,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // 移動ベクトルをホイール方向に投影（符号を反転）
             let moveProjection = moveX * wheelDirX - moveY * wheelDirY;
             
-            // 上と左下のホイールの矢印を反転
-            if (index === 0 || index === 2) {
+            // 左下のホイールの矢印を反転
+            if (index === 2) {
                 moveProjection = -moveProjection;
             }
             
