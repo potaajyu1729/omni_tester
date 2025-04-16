@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>オムニホイールシミュレーター</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <h1>オムニホイールシミュレーター</h1>
+    
+    <div class="container">
+        <div class="wheel-section">
+            <div class="wheel-title">4輪オムニホイール</div>
+            <div class="wheel-container">
+                <canvas id="fourWheelCanvas" width="400" height="400"></canvas>
+            </div>
+        </div>
+        
+        <div class="wheel-section">
+            <div class="wheel-title">3輪オムニホイール</div>
+            <div class="wheel-container">
+                <canvas id="threeWheelCanvas" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="controller-info">
+        <h2>Lスティック入力</h2>
+        <div class="stick-display">
+            <div id="stickDot" class="stick-dot"></div>
+        </div>
+        <div class="stick-values">
+            X: <span id="xValue">0.00</span> | Y: <span id="yValue">0.00</span>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
