@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
     // キャンバス要素の取得
     const fourWheelCanvas = document.getElementById("fourWheelCanvas");
-    const threeWheelCanvas = document.getElementById("threeWheelCanvas");
+    //const threeWheelCanvas = document.getElementById("threeWheelCanvas");
     const fourWheelCtx = fourWheelCanvas.getContext("2d");
-    const threeWheelCtx = threeWheelCanvas.getContext("2d");
+    //const threeWheelCtx = threeWheelCanvas.getContext("2d");
     
     // スティック表示要素
     const stickDot = document.getElementById("stickDot");
@@ -136,99 +136,99 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
-    // 3輪オムニホイールの描画
-    function drawThreeWheelSystem(ctx, moveX, moveY) {
-        const width = ctx.canvas.width;
-        const height = ctx.canvas.height;
-        const centerX = width / 2;
-        const centerY = height / 2;
-        const size = Math.min(width, height) * 0.6;
+    // // 3輪オムニホイールの描画
+    // function drawThreeWheelSystem(ctx, moveX, moveY) {
+    //     const width = ctx.canvas.width;
+    //     const height = ctx.canvas.height;
+    //     const centerX = width / 2;
+    //     const centerY = height / 2;
+    //     const size = Math.min(width, height) * 0.6;
         
-        // キャンバスをクリア
-        ctx.clearRect(0, 0, width, height);
+    //     // キャンバスをクリア
+    //     ctx.clearRect(0, 0, width, height);
         
-        // 背景を描画
-        ctx.fillStyle = "#f8f8f8";
-        ctx.fillRect(0, 0, width, height);
+    //     // 背景を描画
+    //     ctx.fillStyle = "#f8f8f8";
+    //     ctx.fillRect(0, 0, width, height);
         
-        // 車体（三角形）を描画
-        ctx.beginPath();
-        ctx.moveTo(centerX, centerY - size/2);
-        ctx.lineTo(centerX + size/2 * Math.cos(Math.PI/6), centerY + size/2 * Math.sin(Math.PI/6));
-        ctx.lineTo(centerX - size/2 * Math.cos(Math.PI/6), centerY + size/2 * Math.sin(Math.PI/6));
-        ctx.closePath();
-        ctx.strokeStyle = "#888";
-        ctx.lineWidth = 8;
-        ctx.stroke();
+    //     // 車体（三角形）を描画
+    //     ctx.beginPath();
+    //     ctx.moveTo(centerX, centerY - size/2);
+    //     ctx.lineTo(centerX + size/2 * Math.cos(Math.PI/6), centerY + size/2 * Math.sin(Math.PI/6));
+    //     ctx.lineTo(centerX - size/2 * Math.cos(Math.PI/6), centerY + size/2 * Math.sin(Math.PI/6));
+    //     ctx.closePath();
+    //     ctx.strokeStyle = "#888";
+    //     ctx.lineWidth = 8;
+    //     ctx.stroke();
         
-        // 移動方向の角度を計算（ラジアン）
-        const moveAngle = Math.atan2(moveY, moveX);
+    //     // 移動方向の角度を計算（ラジアン）
+    //     const moveAngle = Math.atan2(moveY, moveX);
         
-        // ホイールの位置（3つの角）
-        const wheelPositions = [
-            { x: centerX, y: centerY - size/2, angle: 0 },                                          // 上
-            { x: centerX + size/2 * Math.cos(Math.PI/6), y: centerY + size/2 * Math.sin(Math.PI/6), angle: 2*Math.PI/3 },  // 右下
-            { x: centerX - size/2 * Math.cos(Math.PI/6), y: centerY + size/2 * Math.sin(Math.PI/6), angle: -2*Math.PI/3 }  // 左下
-        ];
+    //     // ホイールの位置（3つの角）
+    //     const wheelPositions = [
+    //         { x: centerX, y: centerY - size/2, angle: 0 },                                          // 上
+    //         { x: centerX + size/2 * Math.cos(Math.PI/6), y: centerY + size/2 * Math.sin(Math.PI/6), angle: 2*Math.PI/3 },  // 右下
+    //         { x: centerX - size/2 * Math.cos(Math.PI/6), y: centerY + size/2 * Math.sin(Math.PI/6), angle: -2*Math.PI/3 }  // 左下
+    //     ];
         
-        // 各ホイールの方向角度（ラジアン）
-        const wheelDirections = [
-            Math.PI/2,      // 上のホイールは90度方向に力を発生
-            7*Math.PI/6,    // 右下のホイールは210度方向に力を発生
-            11*Math.PI/6    // 左下のホイールは330度方向に力を発生
-        ];
+    //     // 各ホイールの方向角度（ラジアン）
+    //     const wheelDirections = [
+    //         Math.PI/2,      // 上のホイールは90度方向に力を発生
+    //         7*Math.PI/6,    // 右下のホイールは210度方向に力を発生
+    //         11*Math.PI/6    // 左下のホイールは330度方向に力を発生
+    //     ];
         
-        // 移動方向と近い（±3度以内）のホイールを特定
-        const thresholdRadians = 3 * (Math.PI / 180); // 3度をラジアンに変換
-        const hideWheels = [];
+    //     // 移動方向と近い（±3度以内）のホイールを特定
+    //     const thresholdRadians = 3 * (Math.PI / 180); // 3度をラジアンに変換
+    //     const hideWheels = [];
         
-        // 移動ベクトルの大きさが十分あるかチェック
-        const moveMagnitude = Math.sqrt(moveX * moveX + moveY * moveY);
-        if (moveMagnitude > 0.1) { // 小さすぎる入力は無視
-            wheelDirections.forEach((direction, index) => {
-                // 指定方向と近いホイールをチェック
-                if (angleDifference(moveAngle, direction) <= thresholdRadians) {
-                    hideWheels.push(index);
-                }
+    //     // 移動ベクトルの大きさが十分あるかチェック
+    //     const moveMagnitude = Math.sqrt(moveX * moveX + moveY * moveY);
+    //     if (moveMagnitude > 0.1) { // 小さすぎる入力は無視
+    //         wheelDirections.forEach((direction, index) => {
+    //             // 指定方向と近いホイールをチェック
+    //             if (angleDifference(moveAngle, direction) <= thresholdRadians) {
+    //                 hideWheels.push(index);
+    //             }
                 
-                // 反対側（180°±3°）のホイールもチェック
-                const oppositeAngle = (direction + Math.PI) % (2 * Math.PI);
-                if (angleDifference(moveAngle, oppositeAngle) <= thresholdRadians) {
-                    hideWheels.push(index);
-                }
-            });
-        }
+    //             // 反対側（180°±3°）のホイールもチェック
+    //             const oppositeAngle = (direction + Math.PI) % (2 * Math.PI);
+    //             if (angleDifference(moveAngle, oppositeAngle) <= thresholdRadians) {
+    //                 hideWheels.push(index);
+    //             }
+    //         });
+    //     }
         
-        // ホイールを描画
-        wheelPositions.forEach((pos, index) => {
-            // ホイールの回転方向を計算
-            const wheelDirX = Math.cos(pos.angle + Math.PI/2);
-            const wheelDirY = Math.sin(pos.angle + Math.PI/2);
+    //     // ホイールを描画
+    //     wheelPositions.forEach((pos, index) => {
+    //         // ホイールの回転方向を計算
+    //         const wheelDirX = Math.cos(pos.angle + Math.PI/2);
+    //         const wheelDirY = Math.sin(pos.angle + Math.PI/2);
             
-            // 移動ベクトルをホイール方向に投影（符号を反転）
-            let moveProjection = moveX * wheelDirX - moveY * wheelDirY;
+    //         // 移動ベクトルをホイール方向に投影（符号を反転）
+    //         let moveProjection = moveX * wheelDirX - moveY * wheelDirY;
             
-            // 左下のホイールの矢印を反転
-            if (index === 2) {
-                moveProjection = -moveProjection;
-            }
+    //         // 左下のホイールの矢印を反転
+    //         if (index === 2) {
+    //             moveProjection = -moveProjection;
+    //         }
             
-            // 指定方向と近いホイールは矢印を表示しない
-            const showArrow = !hideWheels.includes(index);
+    //         // 指定方向と近いホイールは矢印を表示しない
+    //         const showArrow = !hideWheels.includes(index);
             
-            // ホイールを描画
-            drawWheel(ctx, pos.x, pos.y, pos.angle, moveProjection, showArrow);
-        });
+    //         // ホイールを描画
+    //         drawWheel(ctx, pos.x, pos.y, pos.angle, moveProjection, showArrow);
+    //     });
         
-        // 移動方向の矢印を描画
-        if (moveX !== 0 || moveY !== 0) {
-            const arrowLength = size * 0.6;
-            const arrowX = centerX + moveX * arrowLength;
-            const arrowY = centerY + moveY * arrowLength;
+    //     // 移動方向の矢印を描画
+    //     if (moveX !== 0 || moveY !== 0) {
+    //         const arrowLength = size * 0.6;
+    //         const arrowX = centerX + moveX * arrowLength;
+    //         const arrowY = centerY + moveY * arrowLength;
             
-            drawArrow(ctx, centerX, centerY, arrowX, arrowY, "#e74c3c", 5);
-        }
-    }
+    //         drawArrow(ctx, centerX, centerY, arrowX, arrowY, "#e74c3c", 5);
+    //     }
+    // }
     
     // ホイールを描画する関数
     function drawWheel(ctx, x, y, angle, speed, showArrow = true) {
@@ -288,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const moveY = stickY;
         
         drawFourWheelSystem(fourWheelCtx, moveX, moveY);
-        drawThreeWheelSystem(threeWheelCtx, moveX, moveY);
+        //drawThreeWheelSystem(threeWheelCtx, moveX, moveY);
     }
     
     // ゲームパッドの状態を更新
