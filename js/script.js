@@ -136,6 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
     
+    //※現在調整中
     // // 3輪オムニホイールの描画
     // function drawThreeWheelSystem(ctx, moveX, moveY) {
     //     const width = ctx.canvas.width;
